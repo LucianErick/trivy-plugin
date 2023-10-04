@@ -1,0 +1,16 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'plugin.yaml'
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        uses: LucianErick/trivy-plugin/.github/workflows/simple-release.yaml@main

@@ -1,0 +1,14 @@
+name: Simple release
+
+on:
+  workflow_call:
+
+jobs:
+  check-version:
+    uses: LucianErick/trivy-plugin/.github/workflows/check-version.yaml@main
+
+  release:
+    needs: check-version
+    uses: LucianErick/trivy-plugin/.github/workflows/go-release.yaml@main
+    with:
+      next-version: ${{ needs.check-version.outputs.next-version }}
