@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"https://github.com/LucianErick/trivy-plugin/pkg/common"
+	"github.com/LucianErick/trivy-plugin/pkg/common"
 )
 
 var (
@@ -36,8 +36,8 @@ func main() {
 	if err := common.MakeTrivyJsonReport(trivyCmd, trivyOutputFileName); err != nil {
 		log.Fatalf("failed to make trivy report: %v", err)
 	}
-	_, err := common.ReadReport(trivyOutputFileName)
-	if err != nil {
+
+	if _, err := common.ReadReport(trivyOutputFileName); err != nil {
 		log.Fatalf("failed to get report from json: %v", err)
 	}
 
@@ -63,12 +63,9 @@ func saveResult(filename string, result []byte) error {
 	if err != nil {
 		return err
 	}
-	_, err = file.Write(result)
-	if err != nil {
-		return err
-	}
 	defer closeFile(file)
-	return nil
+	_, err = file.Write(result)
+	return err
 }
 
 func helpMessage() {
