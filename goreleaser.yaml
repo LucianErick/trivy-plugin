@@ -8,7 +8,6 @@ builds:
       - "-extldflags '-static'"
       - -X main.version={{.Version}}
     goos:
-      - darwin
       - linux
       - freebsd
       - windows
@@ -23,8 +22,6 @@ builds:
       - 7
 
     ignore:
-      - goos: darwin
-        goarch: 386
       - goos: freebsd
         goarch: arm
       - goos: freebsd

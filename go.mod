@@ -1,6 +1,6 @@
 module github.com/LucianErick/trivy-plugin
 
-go 1.21.1
+go 1.19
 
 require (
 	github.com/aquasecurity/trivy v0.45.1
