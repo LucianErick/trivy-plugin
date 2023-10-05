@@ -1,10 +1,10 @@
 name: "trivy-plugin"
 repository: github.com/LucianErick/trivy-plugin
-version: "0.0.1"
+version: "0.0.0"
 usage: trivy plugin
 description: |-
   A Trivy plugin
 platforms:
   -
-    uri: https://github.com/LucianErick/trivy-plugin/releases/download/v0.0.1/trivy-plugin_0.0.1_Linux-amd64.tar.gz
+    uri: https://github.com/LucianErick/trivy-plugin/releases/download/v0.0.1/trivy-plugin_0.0.0_Linux-amd64.tar.gz
     bin: ./trivy-plugin
