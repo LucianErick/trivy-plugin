@@ -8,3 +8,4 @@ platforms:
   -
     uri: https://github.com/LucianErick/trivy-plugin/releases/download/v0.0.1/trivy-plugin_0.0.0_Linux-amd64.tar.gz
     bin: ./trivy-plugin
+    
