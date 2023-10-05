@@ -19,12 +19,10 @@ import (
 
 var ErrorJsonUnknownField = errors.New("json: unknown field")
 
-// IsHelp checks if the "--help" or "-h" flag is present in the command-line arguments.
 func IsHelp() bool {
 	return slices.Contains(os.Args, "--help") || slices.Contains(os.Args, "-h")
 }
 
-// ReadReport reads and parses a report from the specified file.
 func ReadReport(fileName string) (*types.Report, error) {
 
 	log.Println("Read report", fileName)
@@ -46,7 +44,6 @@ func ReadReport(fileName string) (*types.Report, error) {
 	return nil, fmt.Errorf("failed to read report %v", err)
 }
 
-// readAndParseJson reads and parses JSON data from a file.
 func readAndParseJson[T any](fileName string) (*T, error) {
 	f, err := os.Open(fileName)
 	if err != nil {
@@ -63,7 +60,6 @@ func readAndParseJson[T any](fileName string) (*T, error) {
 	return parseJsonStrict[T](f)
 }
 
-// parseJsonStrict parses JSON data strictly, disallowing unknown fields.
 func parseJsonStrict[T any](r io.Reader) (*T, error) {
 	var out T
 
@@ -80,7 +76,6 @@ func parseJsonStrict[T any](r io.Reader) (*T, error) {
 	return &out, nil
 }
 
-// convertK8sReportToReport converts a Kubernetes report to a standard report.
 func convertK8sReportToReport(k8s *k8sReport.Report) *types.Report {
 	var results types.Results
 	for _, vuln := range k8s.Vulnerabilities {
@@ -95,7 +90,6 @@ func convertK8sReportToReport(k8s *k8sReport.Report) *types.Report {
 	}
 }
 
-// GetPathToPluginDir returns the path to a plugin directory based on the executable's location.
 func GetPathToPluginDir(fileName string) (string, error) {
 	ex, err := os.Executable()
 	if err != nil {
@@ -104,7 +98,6 @@ func GetPathToPluginDir(fileName string) (string, error) {
 	return filepath.Join(filepath.Dir(ex), fileName), nil
 }
 
-// GetPathToTemplate returns the path to a template file in the plugin directory.
 func GetPathToTemplate(fileName string) (string, error) {
 	path, err := GetPathToPluginDir(fileName)
 	if err != nil {
@@ -113,7 +106,6 @@ func GetPathToTemplate(fileName string) (string, error) {
 	return "@" + path, nil
 }
 
-// ReadPluginFile reads a file from the plugin directory.
 func ReadPluginFile(fileName string) ([]byte, error) {
 	path, err := GetPathToPluginDir(fileName)
 	if err != nil {
@@ -123,7 +115,6 @@ func ReadPluginFile(fileName string) ([]byte, error) {
 	return os.ReadFile(path)
 }
 
-// MakeTrivyJsonReport generates a JSON report using the Trivy command.
 func MakeTrivyJsonReport(trivyCommand []string, outputFileName string) error {
 	cmdArgs := append(trivyCommand, "--format", "json", "--output", outputFileName)
 	cmd := exec.Command("trivy", cmdArgs...)
@@ -135,10 +126,8 @@ func MakeTrivyJsonReport(trivyCommand []string, outputFileName string) error {
 	return nil
 }
 
-// Arguments represents a map of plugin arguments.
 type Arguments map[string]string
 
-// RetrievePluginArguments retrieves plugin arguments from the command-line.
 func RetrievePluginArguments(availableArguments []string) (pluginArgs Arguments, rest []string) {
 	trivyCommand := make([]string, 0, len(os.Args))
 	args := make(map[string]string)
