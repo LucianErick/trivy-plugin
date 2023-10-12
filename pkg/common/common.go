@@ -11,8 +11,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	k8sReport "github.com/aquasecurity/trivy/tree/main/pkg/k8s/report"
-	"github.com/aquasecurity/trivy/blob/main/pkg/types"
+	k8sReport "github.com/aquasecurity/trivy/pkg/k8s/report"
+	"github.com/aquasecurity/trivy/pkg/types"
 
 	"golang.org/x/exp/slices"
 )
