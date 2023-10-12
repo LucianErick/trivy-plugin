@@ -12,7 +12,7 @@ import (
 	"strings"
 
 	k8sReport "github.com/aquasecurity/trivy/tree/main/pkg/k8s/report"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/aquasecurity/trivy/blob/main/pkg/types"
 
 	"golang.org/x/exp/slices"
 )
