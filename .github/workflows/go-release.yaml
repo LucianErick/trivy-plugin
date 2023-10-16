@@ -12,7 +12,6 @@ jobs:
   release-go:
     name: Release go
     runs-on: ubuntu-latest
-    if: ${{ inputs.next-version != '' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
